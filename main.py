@@ -32,7 +32,7 @@ def ball_animation():
         if abs(ball.left - computer.right) < 10:
             ball_speed_x *= -1
             
-# Animaasi player
+# Animasi player
 def player_animation():
     player.y += player_speed
     if player.top <= 0:
@@ -101,8 +101,8 @@ bg_color = pygame.Color('grey12')
 light_grey = (200, 200, 200)
 
 # Speed
-ball_speed_x = 14 * random.choice((1, -1))
-ball_speed_y = 14 * random.choice((1, -1))
+ball_speed_x = 8 * random.choice((1, -1))
+ball_speed_y = 8 * random.choice((1, -1))
 player_speed = 0
 computer_speed = 10
 
@@ -121,7 +121,7 @@ score_sound = pygame.mixer.Sound("ScoreUp.mp3")
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            print("Thanks fo Playing!")
+            print("Thanks For Playing!")
             pygame.quit()
             sys.exit()
             
@@ -156,6 +156,13 @@ while True:
     computer_text = game_font.render(f"Computer = {computer_score}", False, light_grey)
     screen.blit(computer_text, (160,470))
     
+    if player_score | computer_score >= 10:
+        print("Game Finished!")
+        print("Computer Score : " + str(computer_score))
+        print("Player Score : " + str(player_score))
+        print("Thanks For Playing!")
+        pygame.quit()
+        sys.exit()
     
     pygame.display.flip()
     clock.tick(60)
